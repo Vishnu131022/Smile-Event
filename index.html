@@ -34,287 +34,277 @@
     <!-- Main css -->
     <link rel="stylesheet" href="./event_files/main.css">
     <script src="blob:https://gramentheme.com/043b94d9-bd0b-4799-9f8a-05810d168e81"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #F8F4EC 0%, #E7DCC8 100%);
+    }
 
-        /* Floating Circle Button */
+    /* Floating Circle Button */
+    .floating-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #E7DCC8 0%, #B8B2A6 100%);
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(184, 178, 166, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 8px 25px rgba(184, 178, 166, 0.4);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 8px 35px rgba(184, 178, 166, 0.6);
+        }
+    }
+
+    .floating-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 35px rgba(184, 178, 166, 0.6);
+    }
+
+    .floating-button svg {
+        width: 32px;
+        height: 32px;
+        fill: #F8F4EC;
+    }
+
+    /* Popup Card */
+    .popup-card {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        background: #FFFFFF;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        max-width: 350px;
+        width: calc(100vw - 60px);
+        z-index: 999;
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .popup-card.active {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        pointer-events: all;
+    }
+
+    .smile-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 20px;
+        display: block;
+        animation: rotate 4s linear infinite;
+    }
+
+    @keyframes rotate {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-10deg); }
+        75% { transform: rotate(10deg); }
+    }
+
+    .popup-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .popup-header h2 {
+        color: #4A4742;
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .popup-header p {
+        color: #6F6B65;
+        font-size: 13px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        margin-bottom: 10px;
+        background: #F8F4EC;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .contact-item:hover {
+        background: #B8B2A6;
+        color: white;
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(184, 178, 166, 0.4);
+    }
+
+    .contact-icon {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #E7DCC8 0%, #B8B2A6 100%);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-icon {
+        background: white;
+    }
+
+    .contact-icon svg {
+        width: 18px;
+        height: 18px;
+        fill: white;
+        transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-icon svg {
+        fill: #B8B2A6;
+    }
+
+    .contact-info {
+        flex: 1;
+    }
+
+    .contact-label {
+        font-size: 11px;
+        color: #8E8A84;
+        margin-bottom: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-label {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .contact-value {
+        font-size: 14px;
+        font-weight: 600;
+        color: #4A4742;
+        transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-value {
+        color: white;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 28px;
+        height: 28px;
+        border: none;
+        background: #F1EEE7;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+        background: #B8B2A6;
+        transform: rotate(90deg);
+    }
+
+    .close-btn:hover svg {
+        fill: white;
+    }
+
+    .close-btn svg {
+        width: 14px;
+        height: 14px;
+        fill: #6F6B65;
+        transition: all 0.3s ease;
+    }
+
+    /* Overlay */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(184, 178, 166, 0.3);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 998;
+    }
+
+    .overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    @media (max-width: 480px) {
         .floating-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 8px 35px rgba(102, 126, 234, 0.7);
-            }
-        }
-
-        .floating-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 35px rgba(102, 126, 234, 0.7);
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
         }
 
         .floating-button svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .popup-card {
+            bottom: 85px;
+            right: 20px;
+            padding: 25px 20px;
+        }
+
+        .popup-header h2 {
+            font-size: 20px;
+        }
+
+        .smile-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .contact-item {
+            padding: 10px;
+        }
+
+        .contact-icon {
             width: 32px;
             height: 32px;
         }
 
-        /* Popup Card */
-        .popup-card {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 350px;
-            width: calc(100vw - 60px);
-            z-index: 999;
-            opacity: 0;
-            transform: scale(0.8) translateY(20px);
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .popup-card.active {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            pointer-events: all;
-        }
-
-        .smile-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            display: block;
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate {
-            0%, 100% {
-                transform: rotate(0deg);
-            }
-            25% {
-                transform: rotate(-10deg);
-            }
-            75% {
-                transform: rotate(10deg);
-            }
-        }
-
-        .popup-header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .popup-header h2 {
-            color: #333;
-            font-size: 22px;
-            margin-bottom: 5px;
-        }
-
-        .popup-header p {
-            color: #666;
+        .contact-value {
             font-size: 13px;
         }
+    }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            margin-bottom: 10px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-        }
+</style>
 
-        .contact-item:hover {
-            background: #667eea;
-            color: white;
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .contact-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover .contact-icon {
-            background: white;
-        }
-
-        .contact-icon svg {
-            width: 18px;
-            height: 18px;
-            fill: white;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover .contact-icon svg {
-            fill: #667eea;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-label {
-            font-size: 11px;
-            color: #888;
-            margin-bottom: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover .contact-label {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .contact-value {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover .contact-value {
-            color: white;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 28px;
-            height: 28px;
-            border: none;
-            background: #f8f9fa;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .close-btn:hover {
-            background: #ff4757;
-            transform: rotate(90deg);
-        }
-
-        .close-btn:hover svg {
-            fill: white;
-        }
-
-        .close-btn svg {
-            width: 14px;
-            height: 14px;
-            fill: #666;
-            transition: all 0.3s ease;
-        }
-
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 998;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        @media (max-width: 480px) {
-            .floating-button {
-                bottom: 20px;
-                right: 20px;
-                width: 55px;
-                height: 55px;
-            }
-
-            .floating-button svg {
-                width: 28px;
-                height: 28px;
-            }
-
-            .popup-card {
-                bottom: 85px;
-                right: 20px;
-                padding: 25px 20px;
-            }
-
-            .popup-header h2 {
-                font-size: 20px;
-            }
-
-            .smile-icon {
-                width: 50px;
-                height: 50px;
-            }
-
-            .contact-item {
-                padding: 10px;
-            }
-
-            .contact-icon {
-                width: 32px;
-                height: 32px;
-            }
-
-            .contact-value {
-                font-size: 13px;
-            }
-        }
-    </style>
 </head>
 
 <body class="position-relative bg2-clr" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
@@ -362,7 +352,7 @@
     </div>
 
     <!-- Custom Header Start -->
-    <header class="header-section cmn-fixed py-lg-0 py-6">
+    <header class="header-section cmn-fixed hb-border py-lg-0 py-6">
         <div class="container">
             <div class="main-navbar">
                 <nav class="navbar-custom">
@@ -371,17 +361,12 @@
                             <a href="index.html" class="brand-logo">
                                 <img class="w-100" src="./event_files/Index/logo (2).png" alt="logo">
                             </a>
-                            <div class="d-flex align-items-center gap-xxl-5 gap-5">
-                                <a href="javascript:void(0)" class="search-trigger search-icon d-lg-none d-block">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </a>
-                                <button class="navbar-toggle-btn d-block d-lg-none" type="button">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </button>
-                            </div>
+                            <button class="navbar-toggle-btn d-block d-lg-none" type="button">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
                         </div>
                         <div class="navbar-toggle-item">
                             <ul
@@ -442,7 +427,7 @@
 
                                         </li>
                                         <li class="menu-link py-1">
-                                            <a href=""
+                                            <a href="https://gramentheme.com/html/xstar/service-details.html"
                                                 class="fw_500 white-clr">Service Details</a>
                                         </li>
                                     </ul> -->
@@ -460,8 +445,6 @@
                                         </li>
                                     </ul> -->
                                 </li>
-
-
                                 <li class="menu-item position-relative">
                                     <a href="/contact.html" class="fw_500">
                                         Contact Us
@@ -469,21 +452,27 @@
                                 </li>
                             </ul>
                         </div>
-                        <div
-                            class="d-lg-flex d-none d-grid justify-content-center ph-clickwrap align-items-center gap-xxl-7 gap-xl-6 gap-lg-5 gap-3">
-                            <div class="search-shopcart d-flex gap-xxl-9 gap-xl-5 gap-3">
-                                <a href="javascript:void(0)" class="search-trigger search-icon">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </a>
-                           
-                            </div>
-                            <a href="contact.html"
-                                class="d-flex align-items-center gap-sm-3 gap-2 touch-btn cmn-btn">
-                                <span class="rot60">
-                                    <i class="fas fa-arrow-up"></i>
+                        <div class="d-lg-flex d-grid justify-content-center ph-clickwrap align-items-center gap-xxl-7 gap-xl-6 gap-lg-5 gap-3">
+                            <a href="contact.html" class="d-flex align-items-center header-ph gap-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_6577_1298)">
+                                        <path d="M21.2438 18.1073L17.7431 14.6066C17.0144 13.8779 15.8329 13.8771 15.1034 14.6066L14.0839 15.6261C11.7543 14.2035 9.79723 12.2464 8.37459 9.91682L9.49247 8.79899C10.2202 8.07121 10.2202 6.88701 9.49242 6.15923L5.9917 2.65851C5.26504 1.93194 4.08525 1.92519 3.34978 2.66071L1.14994 4.87766C0.0974045 5.76145 -0.272814 7.21251 0.207186 8.58777C2.67028 15.6461 8.35472 21.3305 15.413 23.7936C16.7409 24.2569 18.1046 23.9104 18.9717 23.0171C18.9842 23.006 18.9964 22.9946 19.0084 22.9826L21.2438 20.7471C21.9716 20.0193 21.9716 18.8352 21.2438 18.1073ZM20.1287 19.6319L17.9437 21.8168C17.9171 21.839 17.8919 21.863 17.8681 21.8888C17.4082 22.3887 16.6684 22.5613 15.9327 22.3044C9.32433 19.9984 4.00237 14.6764 1.69631 8.06802C1.43226 7.31141 1.62276 6.52752 2.18165 6.07091C2.20289 6.05357 2.22323 6.0351 2.24255 6.01565L4.46719 3.77366C4.49403 3.74672 4.52593 3.72536 4.56106 3.71081C4.5962 3.69626 4.63386 3.6888 4.67189 3.68887C4.7167 3.68887 4.80281 3.69984 4.87659 3.77366L8.37722 7.27438C8.43142 7.32871 8.46186 7.40231 8.46187 7.47905C8.46188 7.55579 8.43145 7.6294 8.37726 7.68374L6.82837 9.23263C6.70656 9.35442 6.62798 9.51274 6.60464 9.68339C6.58129 9.85405 6.61447 10.0277 6.69909 10.1777C8.37983 13.1574 10.8433 15.6209 13.8231 17.3016C13.9731 17.3862 14.1467 17.4194 14.3173 17.3961C14.488 17.3727 14.6463 17.2942 14.7681 17.1724L16.2187 15.7218C16.273 15.6676 16.3466 15.6371 16.4233 15.6371C16.5001 15.6371 16.5737 15.6676 16.628 15.7218L20.1287 19.2225C20.1829 19.2769 20.2133 19.3505 20.2133 19.4272C20.2133 19.504 20.1829 19.5776 20.1287 19.6319ZM12.6048 6.15604C12.1693 6.15604 11.8162 6.5091 11.8162 6.94462C11.8162 7.38013 12.1692 7.73319 12.6048 7.73319C14.6244 7.73319 16.2675 9.37631 16.2675 11.396C16.2675 11.8315 16.6206 12.1845 17.0561 12.1845C17.4916 12.1845 17.8447 11.8315 17.8447 11.396C17.8447 8.50668 15.4941 6.15604 12.6048 6.15604Z" fill="white"></path>
+                                        <path d="M12.7779 3C12.3483 3 12 3.34828 12 3.7779C12 4.20752 12.3482 4.5558 12.7779 4.5558C16.4537 4.5558 19.4442 7.54629 19.4442 11.2221C19.4442 11.6517 19.7925 12 20.2221 12C20.6517 12 21 11.6517 21 11.2221C21 6.68844 17.3116 3 12.7779 3Z" fill="white"></path>
+                                        <path d="M20.7128 3.28719C18.593 1.1674 15.7745 0 12.7767 0C12.3477 0 12 0.347735 12 0.776679C12 1.20562 12.3477 1.55336 12.7767 1.55336C18.1087 1.55336 22.4466 5.89127 22.4466 11.2233C22.4466 11.6523 22.7944 12 23.2233 12C23.6523 12 24 11.6523 24 11.2233C24 8.22542 22.8326 5.40702 20.7128 3.28719Z" fill="white"></path>
+                                    </g>
+                                    <defs>
+                                        <clippath id="clip0_6577_1298">
+                                            <rect width="24" height="24" fill="white"></rect>
+                                        </clippath>
+                                    </defs>
+                                </svg>
+                                <span class="stext">
+                                    +91 98955 11024
                                 </span>
-                                Get In Touch
                             </a>
+                            <div class="remove-click remove-clickbg-adding d-center m-auto">
+                                <i class="fas fa-bars"></i>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -641,7 +630,6 @@
 
 /* Header responsive */
 .d-flex.align-items-center.justify-content-between {
-    flex-direction: column;
     align-items: flex-start !important;
     gap: 1rem;
 }
@@ -712,9 +700,7 @@
 
 /* Tablet and above */
 @media (min-width: 768px) {
-    .container {
-        padding: 0 30px;
-    }
+
     
     .images-remove-area {
         flex-direction: row !important;
@@ -1098,10 +1084,10 @@
                     <div class="pricing-title">
                         <div
                             class="radius-btn text-uppercase cmn-border d-inline-flex radius100 py-xxl-2 py-2 px-xxl-4 px-4 theme-clr gap-xxl-4 gap-3 mb-xxl-8 mb-xl-6 mb-5">
-                            oUR experts
+                            Our team 
                         </div>
                         <h2 class="stitle">
-                            The Faces <span class="fw-400">Behind   </span>  Our Success 
+                         where <span class="fw-400">dedication </span> meets results
                         </h2>
                     </div>
             
@@ -1691,7 +1677,7 @@
     </main>
     <!-- Main End -->
 
-    <!-- Footer Version-1 Start -->
+    <!-- Footer Version-common Start -->
     <footer class="footer-version-one zindex1 position-relative">
         <div class="container">
             <div class="footer-topversion-one pt-20 pb-20">
@@ -1900,7 +1886,7 @@
             </div>
         </div>
     </footer>
-    <!-- Footer Version-1 End -->
+    <!-- Footer Version-common End -->
 
     <!-- Sub Sidebar Custom End -->
     <div class="subside-barmenu">
@@ -2045,7 +2031,7 @@
             </div>
             <div class="contact-info">
                 <div class="contact-label">Email</div>
-                <div class="contact-value">contact@example.com</div>
+                <div class="contact-value">test24@example.com</div>
             </div>
         </a>
 
@@ -2057,7 +2043,7 @@
             </div>
             <div class="contact-info">
                 <div class="contact-label">WhatsApp</div>
-                <div class="contact-value">+1 (234) 567-890</div>
+                <div class="contact-value">+91 98955 11024</div>
             </div>
         </a>
 
@@ -2069,7 +2055,7 @@
             </div>
             <div class="contact-info">
                 <div class="contact-label">Phone</div>
-                <div class="contact-value">+1 (234) 567-890</div>
+                <div class="contact-value">+91 98955 11024</div>
             </div>
         </a>
     </div>
