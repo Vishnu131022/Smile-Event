@@ -295,15 +295,6 @@
     width: 100%;
 }
 
-.accordion-btn {
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.mtitle-ara {
-    width: 100% !important;
-    padding: 0;
-}
 
 .mtitle {
     font-size: clamp(20px, 4vw, 28px);
@@ -322,11 +313,6 @@
     padding: 0;
 }
 
-.modern-list {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-}
 
 .modern-list li {
     font-size: clamp(13px, 2vw, 15px);
@@ -381,6 +367,119 @@
         width: 41.666667% !important;
     }
 }
+/* --- GLOBAL RESPONSIVE FIXES FOR ACCORDION --- */
+
+/* Make accordion header stack cleanly on mobile */
+.accordion-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+/* Fix badge + title alignment */
+.mtitle-ara {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Make modern list responsive */
+.modern-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(14px, 2vw, 16px);
+}
+
+/* Prevent icon from misplacing */
+.serial-badge i,
+.modern-list i {
+    width: 18px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* --- MOBILE FIX FOR BROKEN ACCORDION --- */
+@media (max-width: 576px) {
+
+    /* Reset accordion header layout */
+    .accordion-btn {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        width: 100% !important;
+        gap: 12px !important;
+        padding: 0 !important;
+        min-height: 70px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    /* Ensure content inside accordion header is visible */
+    .mtitle-ara {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+
+    /* Fix left side serial badge */
+    .serial-badge {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        font-size: 14px !important;
+        padding: 6px 18px !important;
+        min-width: 60px !important;
+    }
+
+    /* Title section spacing */
+    .mtitle {
+        display: block !important;
+        font-size: 18px !important;
+        margin-top: 10px !important;
+        white-space: normal !important;
+    }
+
+    .serial-badge .rot60 {
+        margin-left: 6px !important;
+        font-size: 16px !important;
+    }
+
+    /* ✅ SHOW IMAGES ON MOBILE */
+    .tab-remove-thumb {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+    }
+
+    .tab-remove-thumb img {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+    /* Modern list show under paragraph */
+    .images-remove-area {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 10px !important;
+    }
+
+    /* Hide JS-based plus/minus icon if exists */
+    .accordion-btn::after {
+        display: none !important;
+    }
+
+    .header-area {
+        width: 100% !important;
+        overflow: visible !important;
+    }
+}
 
 
 /* Extra small devices */
@@ -406,8 +505,7 @@
 }
          </style>
 
-
-        <!-- Service m Tabs Start -->
+        <!-- Service Version01 Tabs Start -->
         <section class="service-section pt-space pb-space">
             <div class="container position-relative">
                 <div
@@ -421,7 +519,6 @@
                             Most <span class="fw-400">experienced</span> services
                         </h2>
                     </div>
-
                 </div>
 
                 <!--Service Tabing section-->
@@ -440,7 +537,7 @@
                                             </span>
                                         </span>
                                         <span class="mtitle d-block mt-6">
-                                            <a href="https://gramentheme.com/html/xstar/service-details.html"
+                                            <a href=""
                                                 class="white-clr whitehover">
                                                 Wedding Events
                                             </a>
@@ -491,7 +588,7 @@
                                             </span>
                                         </span>
                                         <span class="mtitle d-block mt-6">
-                                            <a href="https://gramentheme.com/html/xstar/service-details.html"
+                                            <a href=""
                                                 class="white-clr whitehover">
                                                 Housewarming Party
                                             </a>
@@ -538,9 +635,9 @@
                                             </span>
                                         </span>
                                         <span class="mtitle d-block mt-6">
-                                            <a href="https://gramentheme.com/html/xstar/service-details.html"
+                                            <a href=""
                                                 class="white-clr whitehover">
-                                                Birthiday Party
+                                                Birthday Party
                                             </a>
                                         </span>
                                         <span class="pras mt-xxl-7 mt-xl-5 mt-4 d-block">
@@ -557,7 +654,7 @@
                                                 <i class="fas fa-chevron-right"></i> Costume Designing
                                             </li>
                                             <li class="d-flex align-items-center gap-2">
-                                                <i class="fas fa-chevron-right"></i> Birthiday Photography
+                                                <i class="fas fa-chevron-right"></i> Birthday Photography
                                             </li>
                                             <li class="d-flex align-items-center gap-2">
                                                 <i class="fas fa-chevron-right"></i> Entertainment
@@ -570,59 +667,12 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="accordion-single py-xxl-9 py-xl-7 py-lg-6 py-5 bb-border bt-border">
-                            <div class="header-area">
-                                <div
-                                    class="accordion-btn justify-content-between d-flex align-items-center text-start d-flex position-relative w-100">
-                                    <div class="mtitle-ara">
-                                        <span
-                                            class="d-inine-flex serial-badge align-items-center gap-4 cmn-border radius100 white-clr">
-                                            04
-                                            <span class="rot60 d-inline-block theme-clr">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </span>
-                                        </span>
-                                        <span class="mtitle d-block mt-6">
-                                            <a href="https://gramentheme.com/html/xstar/service-details.html"
-                                                class="white-clr whitehover">
-                                                Business consulting
-                                            </a>
-                                        </span>
-                                        <span class="pras mt-xxl-7 mt-xl-5 mt-4 d-block">
-                                            We build intelligent next-generation solutions at the intersection of new
-                                            business opportunities and technological
-                                            innovations.
-                                        </span>
-                                    </div>
-                                    <div class="images-remove-area d-lg-flex d-none align-items-center gap-xxl-8 gap-4">
-                                        <ul class="modern-list d-grid gap-2">
-                                            <li class="d-flex align-items-center gap-2">
-                                                <i class="fas fa-chevron-right"></i> Legacy Modernization
-                                            </li>
-                                            <li class="d-flex align-items-center gap-2">
-                                                <i class="fas fa-chevron-right"></i> Solution Design
-                                            </li>
-                                            <li class="d-flex align-items-center gap-2">
-                                                <i class="fas fa-chevron-right"></i> Technology Enabling
-                                            </li>
-                                            <li class="d-flex align-items-center gap-2">
-                                                <i class="fas fa-chevron-right"></i> Mobile-First Systems
-                                            </li>
-                                        </ul>
-                                        <div class="tab-remove-thumb">
-                                            <img src="./event_files/tab4.png" alt="img">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
                 <!--Service Tabing section-->
             </div>
-            
         </section>
-        <!-- Service m Tabs End -->
+        <!-- Service Version01 Tabs End -->
 
         <!-- Text SLider Start -->
         <div class="digital-solution mb-xxl-4 pb-lg-0 pb-15">
