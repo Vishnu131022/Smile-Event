@@ -29,6 +29,277 @@
     <link rel="stylesheet" href="./event_files/aos.css">
     <!-- Main css -->
     <link rel="stylesheet" href="./event_files/main.css">
+    <style>
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #F8F4EC 0%, #E7DCC8 100%);
+    }
+
+    /* Floating Circle Button */
+    .floating-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #E7DCC8 0%, #B8B2A6 100%);
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(184, 178, 166, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 8px 25px rgba(184, 178, 166, 0.4);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 8px 35px rgba(184, 178, 166, 0.6);
+        }
+    }
+
+    .floating-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 35px rgba(184, 178, 166, 0.6);
+    }
+
+    .floating-button svg {
+        width: 32px;
+        height: 32px;
+        fill: #F8F4EC;
+    }
+
+    /* Popup Card */
+    .popup-card {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        background: #FFFFFF;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        max-width: 350px;
+        width: calc(100vw - 60px);
+        z-index: 999;
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .popup-card.active {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        pointer-events: all;
+    }
+
+    .smile-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 20px;
+        display: block;
+        animation: rotate 4s linear infinite;
+    }
+
+    @keyframes rotate {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-10deg); }
+        75% { transform: rotate(10deg); }
+    }
+
+    .popup-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .popup-header h2 {
+        color: #4A4742;
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .popup-header p {
+        color: #6F6B65;
+        font-size: 13px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        margin-bottom: 10px;
+        background: #F8F4EC;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .contact-item:hover {
+        background: #B8B2A6;
+        color: white;
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(184, 178, 166, 0.4);
+    }
+
+    .contact-icon {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #E7DCC8 0%, #B8B2A6 100%);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-icon {
+        background: white;
+    }
+
+    .contact-icon svg {
+        width: 18px;
+        height: 18px;
+        fill: white;
+        transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-icon svg {
+        fill: #B8B2A6;
+    }
+
+    .contact-info {
+        flex: 1;
+    }
+
+    .contact-label {
+        font-size: 11px;
+        color: #8E8A84;
+        margin-bottom: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-label {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .contact-value {
+        font-size: 14px;
+        font-weight: 600;
+        color: #4A4742;
+        transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-value {
+        color: white;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 28px;
+        height: 28px;
+        border: none;
+        background: #F1EEE7;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+        background: #B8B2A6;
+        transform: rotate(90deg);
+    }
+
+    .close-btn:hover svg {
+        fill: white;
+    }
+
+    .close-btn svg {
+        width: 14px;
+        height: 14px;
+        fill: #6F6B65;
+        transition: all 0.3s ease;
+    }
+
+    /* Overlay */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(184, 178, 166, 0.3);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 998;
+    }
+
+    .overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    @media (max-width: 480px) {
+        .floating-button {
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+        }
+
+        .floating-button svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .popup-card {
+            bottom: 85px;
+            right: 20px;
+            padding: 25px 20px;
+        }
+
+        .popup-header h2 {
+            font-size: 20px;
+        }
+
+        .smile-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .contact-item {
+            padding: 10px;
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .contact-value {
+            font-size: 13px;
+        }
+    }
+
+</style>
+
 </head>
 
 <body class="position-relative bg2-clr" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
@@ -791,6 +1062,162 @@
         <span id="valiu"><i class="fas fa-arrow-up"></i></span>
     </div>
     <!-- Scroll Top End -->
+
+            <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Floating Circle Button -->
+    <button class="floating-button" id="floatingBtn">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" fill="#FFD93D"/>
+            <circle cx="8" cy="10" r="1.5" fill="#333"/>
+            <circle cx="16" cy="10" r="1.5" fill="#333"/>
+            <path d="M7 14C7 14 9 16 12 16C15 16 17 14 17 14" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </button>
+
+    <!-- Popup Card -->
+    <div class="popup-card" id="popupCard">
+        <button class="close-btn" id="closeBtn">
+            <svg viewBox="0 0 24 24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            </svg>
+        </button>
+
+        <svg class="smile-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" fill="#FFD93D"/>
+            <circle cx="8" cy="10" r="1.5" fill="#333"/>
+            <circle cx="16" cy="10" r="1.5" fill="#333"/>
+            <path d="M7 14C7 14 9 16 12 16C15 16 17 14 17 14" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+
+        <div class="popup-header">
+            <h2>Get in Touch!</h2>
+            <p>We'd love to hear from you</p>
+        </div>
+
+        <a href="mailto:contact@example.com" class="contact-item">
+            <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </div>
+            <div class="contact-info">
+                <div class="contact-label">Email</div>
+                <div class="contact-value">test24@example.com</div>
+            </div>
+        </a>
+
+        <a href="https://wa.me/1234567890" target="_blank" class="contact-item">
+            <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+            </div>
+            <div class="contact-info">
+                <div class="contact-label">WhatsApp</div>
+                <div class="contact-value">+91 98955 11024</div>
+            </div>
+        </a>
+
+        <a href="tel:+1234567890" class="contact-item">
+            <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+            </div>
+            <div class="contact-info">
+                <div class="contact-label">Phone</div>
+                <div class="contact-value">+91 98955 11024</div>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        const floatingBtn = document.getElementById('floatingBtn');
+        const popupCard = document.getElementById('popupCard');
+        const closeBtn = document.getElementById('closeBtn');
+        const overlay = document.getElementById('overlay');
+
+        let isDragging = false;
+        let startX, startY, initialX, initialY;
+        let dragThreshold = 5;
+        let hasMoved = false;
+
+        // Mouse and touch events for dragging
+        floatingBtn.addEventListener('mousedown', startDrag);
+        floatingBtn.addEventListener('touchstart', startDrag);
+
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag);
+
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
+
+        function startDrag(e) {
+            isDragging = true;
+            hasMoved = false;
+            
+            const touch = e.type === 'touchstart' ? e.touches[0] : e;
+            startX = touch.clientX;
+            startY = touch.clientY;
+            
+            const rect = floatingBtn.getBoundingClientRect();
+            initialX = rect.left;
+            initialY = rect.top;
+            
+            floatingBtn.style.transition = 'none';
+            e.preventDefault();
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            
+            const touch = e.type === 'touchmove' ? e.touches[0] : e;
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            
+            if (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold) {
+                hasMoved = true;
+            }
+            
+            if (hasMoved) {
+                const newX = initialX + deltaX;
+                const newY = initialY + deltaY;
+                
+                floatingBtn.style.left = newX + 'px';
+                floatingBtn.style.top = newY + 'px';
+                floatingBtn.style.right = 'auto';
+                floatingBtn.style.bottom = 'auto';
+            }
+        }
+
+        function endDrag(e) {
+            if (!isDragging) return;
+            
+            floatingBtn.style.transition = 'all 0.3s ease';
+            isDragging = false;
+            
+            // If not moved significantly, treat as a click
+            if (!hasMoved) {
+                popupCard.classList.add('active');
+                overlay.classList.add('active');
+            }
+        }
+
+        // Close popup when clicking the close button
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            popupCard.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Close popup when clicking the overlay
+        overlay.addEventListener('click', () => {
+            popupCard.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    </script>
 
 
     <!-- js Jquery start -->
