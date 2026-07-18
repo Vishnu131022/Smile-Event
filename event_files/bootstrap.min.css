@@ -8659,6 +8659,10 @@ fieldset:disabled .btn {
     z-index: 1020
 }
 
+.mb-xxl-14 {
+    color: #4B3F32;
+}
+
 @media(min-width: 576px) {
     .sticky-sm-top {
         position: sticky;
@@ -8862,7 +8866,9 @@ fieldset:disabled .btn {
 }
 
 .d-block {
-    display: block !important
+    display: block !important;
+    color: #4B3F32;
+    
 }
 
 .d-grid {
@@ -18297,6 +18303,7 @@ fieldset:disabled .btn {
 
     .mb-xxl-14 {
         margin-bottom: 3.5rem !important
+        
     }
 
     .mb-xxl-13 {

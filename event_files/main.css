@@ -10,12 +10,12 @@ Version: 1.0.0
 :root {
   --body: #ffffff;
   --black: #000;
-  --white: #fff;
+  --white: #3A3A3A;
   --spantext: #757575;
   --theme: #E3FF04;
-  --bg1: #161616;
-  --bg2: #1b1b1b;
-  --bg3: #fff;
+  --bg1: #CFC6B5;
+  --bg2: #B8B2A6;
+  --bg3: #9c2e2e;
   --border1: #454750;
   --pra-clr: #bebebe;
   --dd-clr: #dadada;
@@ -188,8 +188,8 @@ span {
   transition: all 0.5s;
 }
 .common-social li a:hover {
-  background: var(--theme);
-  border-color: var(--theme);
+  background: #6C5F4A;
+  border-color: #6C5F4A;
 }
 .common-social li a:hover svg path {
   stroke: var(--black);
@@ -218,8 +218,8 @@ span {
 }
 .slider-button .cmn-next:hover,
 .slider-button .cmn-prev:hover {
-  background: var(--theme);
-  border-color: var(--theme);
+  background: #6C5F4A;
+  border-color: #6C5F4A;
 }
 .slider-button .cmn-next:hover i,
 .slider-button .cmn-prev:hover i {
@@ -917,7 +917,7 @@ footer {
   height: 100%;
   position: fixed;
   z-index: 99999;
-  background: #000;
+  background: #CFC6B5;
   right: -320px;
   top: 0;
   transition: all 0.4s;
@@ -934,7 +934,7 @@ footer {
 }
 .subside-barmenu .remove-click i {
   font-size: 36px;
-  color: var(--theme);
+  color: #6C5F4A;
 }
 .subside-barmenu .sub-contact-wrapper {
   padding: 40px 20px;
@@ -1317,17 +1317,18 @@ footer {
   font-weight: 400;
   font-style: italic;
   display: inline-block;
+  color: #4B3F32;
 }
 .hero-section-version2 .hero-v2-content .customer-active {
   font-size: 16px;
   color: var(--white);
 }
 .hero-section-version2 .hero-v2-content .explore-more {
-  border-bottom: 1px solid var(--theme);
-  color: var(--theme);
+  border-bottom: 1px solid #6C5F4A;
+  color: #6C5F4A;
 }
 .hero-section-version2 .hero-v2-content .explore-more i {
-  color: var(--theme);
+  color: #6C5F4A;
 }
 .hero-section-version2 .hero-v2-element {
   position: absolute;
@@ -2637,17 +2638,17 @@ input.main-search-input::placeholder {
   transition: all 0.4s;
 }
 .cmn-btn:hover {
-  border-color: var(--theme) !important;
-  color: var(--theme) !important;
+  border-color: #574C3C !important;
+  color: #6C5F4A !important;
 }
 .cmn-btn:hover .get-text {
-  color: var(--theme) !important;
+  color: #6C5F4A !important;
 }
 .cmn-btn:hover .icons {
   transform: rotate(90deg);
 }
 .cmn-btn:hover .icons i {
-  color: var(--theme) !important;
+  color: #6C5F4A !important;
 }
 
 .blog-singelbtn {
@@ -3386,7 +3387,7 @@ input.main-search-input::placeholder {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(239, 100, 76, 0) 64.05%, #E3FF04 115.68%);
+  background: linear-gradient(180deg, rgba(239, 100, 76, 0) 64.05%, #C4C76A  115.68%);
   transition: all 0.5s;
 }
 .team-card01 .thumb .common-social {
@@ -3425,7 +3426,7 @@ input.main-search-input::placeholder {
   width: 24px;
   height: 2px;
   content: "";
-  background: var(--theme);
+  background: #C4C76A;
 }
 .team-card01:hover .content .bspan-clr {
   padding-left: 30px;
@@ -3435,7 +3436,7 @@ input.main-search-input::placeholder {
 }
 .team-card01:hover .thumb::before {
   bottom: 0;
-  background: linear-gradient(180deg, rgba(239, 100, 76, 0) 64.05%, #E3FF04 115.68%);
+  background: linear-gradient(180deg, rgba(239, 100, 76, 0) 64.05%, #C4C76A 115.68%);
 }
 .team-card01:hover .thumb .common-social {
   transition: all 0.4s;
@@ -3879,7 +3880,7 @@ input.main-search-input::placeholder {
   width: 1px;
   height: 100%;
   display: block;
-  background: #292929;
+  background: #C7C88A;
 }
 
 .line-shape span::before,
